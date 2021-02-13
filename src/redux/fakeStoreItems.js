@@ -2,7 +2,8 @@
 const initialState = {
     data: [],
     pending: false,
-    error: null
+    error: null,
+    filterBy: ''
 }
 //Fetch
 let fakeStoreApi = 'https://fakestoreapi.com/products'
@@ -48,6 +49,14 @@ const fetchItemsError = (error) => {
     }
 }
 
+const filterBy = (filterBy) => {
+    return {
+        type: 'FILTER_BY',
+        payload: filterBy 
+    }
+}
+
+
 // Reducer
 
 const fakeStoreItemsReducer = (state = initialState, action) => {
@@ -73,6 +82,12 @@ const fakeStoreItemsReducer = (state = initialState, action) => {
                 error: action.payload.error
             }
         }
+        case 'FILTER_BY': {
+            return {
+                ...state,
+                filterBy: action.payload
+            }
+        }
         default: {
             return state
         }
@@ -81,5 +96,6 @@ const fakeStoreItemsReducer = (state = initialState, action) => {
 
 export {
     fetchFakeStoreItems,
-    fakeStoreItemsReducer
+    fakeStoreItemsReducer,
+    filterBy
 }
