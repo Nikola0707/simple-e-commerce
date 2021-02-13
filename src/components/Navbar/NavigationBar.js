@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import logo from '../../assets/logo.png'
+
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchFakeStoreItems } from '../../redux/fakeStoreItems'
 
@@ -6,7 +8,6 @@ import { fetchFakeStoreItems } from '../../redux/fakeStoreItems'
 import { Container, Navbar, Nav, FormControl, Form, Button } from 'react-bootstrap'
 
 const NavigationBar = () => {
-    const {category, setCategory} = useState([])
 
     const dispatch = useDispatch()
     const { data } = useSelector(state => state.fakeStoreItemsReducer)
@@ -15,18 +16,17 @@ const NavigationBar = () => {
         dispatch(fetchFakeStoreItems())
     }, [dispatch])
 
-    const allCategories = [...new Set(data.map((item) => item.category))]
-    
+    const allCategories = [...new Set(data.map((item) => item.category))]    
 
     return (
         <Container>
-            <Navbar bg="dark" variant="dark" expand="lg">
-                <Navbar.Brand href="#home">Nikola Store</Navbar.Brand>
+            <Navbar bg="light" variant="light" expand="lg" className='py-0 px-5'>
+                <Navbar.Brand href="#home"><img src={logo} alt='logo' style={{width:'80px'}}/></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
                         {
-                            allCategories.map(item => <Nav.Link href="#link">{item.toUpperCase()}</Nav.Link> )                      
+                            allCategories.map(item =><Nav.Link href="#link">{item.toUpperCase()}</Nav.Link> )                      
                         }
                     </Nav>
                     <Form inline>
