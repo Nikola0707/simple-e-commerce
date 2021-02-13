@@ -1,7 +1,23 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchFakeStoreItems } from '../../redux/fakeStoreItems'
+
+
 import { Container, Navbar, Nav, FormControl, Form, Button } from 'react-bootstrap'
 
 const NavigationBar = () => {
+    const {category, setCategory} = useState([])
+
+    const dispatch = useDispatch()
+    const { data } = useSelector(state => state.fakeStoreItemsReducer)
+    
+    useEffect(() => {
+        dispatch(fetchFakeStoreItems())
+    }, [dispatch])
+
+    const allCategories = [...new Set(data.map((item) => item.category))]
+    
+
     return (
         <Container>
             <Navbar bg="dark" variant="dark" expand="lg">
@@ -9,8 +25,9 @@ const NavigationBar = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
-                        <Nav.Link href="#home">All Products</Nav.Link>
-                        <Nav.Link href="#link">Link</Nav.Link>
+                        {
+                            allCategories.map(item => <Nav.Link href="#link">{item.toUpperCase()}</Nav.Link> )                      
+                        }
                     </Nav>
                     <Form inline>
                         <FormControl type="text" placeholder="Search" className="mr-sm-2" />

@@ -7,6 +7,7 @@ import { fetchFakeStoreItems } from '../../redux/fakeStoreItems'
 const CardComponent = () => {
     const [readMore, setReadMore] = useState(false)
 
+
     const dispatch = useDispatch()
     const { pending, error, data } = useSelector(state => state.fakeStoreItemsReducer)
 
@@ -19,10 +20,11 @@ const CardComponent = () => {
     if (error) return <div>{error}</div>
 
     return (
-        <Container>
+        <Container className='mt-5'>
+            <h3>All Products</h3>
             <Row>
                 {
-                    data.map((item, index) =>                        
+                    data.map((item) =>                        
                         <Card key={item.id} style={{ width: '25%'}} >
                             <Card.Img variant="top" src={item.image}  style={{ width: '100%', maxHeight: '250px' }}/>
                             <Card.Body>
@@ -31,7 +33,7 @@ const CardComponent = () => {
                                     {
                                        readMore?item.description:`${item.description.substring(0, 100)}...`
                                     }
-                                    <button className='read-btn' onClick={() => {
+                                    <button className='read-btn' onClick={() => {                                       
                                         setReadMore(!readMore)
                                     }}>
                                         {                                            
