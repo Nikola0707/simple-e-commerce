@@ -8,6 +8,11 @@ import { fetchFakeStoreItems } from '../../redux/fakeStoreItems'
 import { Container, Navbar, Nav, FormControl, Form, Button } from 'react-bootstrap'
 
 const NavigationBar = () => {
+    const [navItem, setNavItem] = useState('')
+
+    const getNavItem = (e) => {
+         setNavItem(e.target.firstChild.data)
+    }
 
     const dispatch = useDispatch()
     const { data } = useSelector(state => state.fakeStoreItemsReducer)
@@ -24,9 +29,9 @@ const NavigationBar = () => {
                 <Navbar.Brand href="#home"><img src={logo} alt='logo' style={{width:'80px'}}/></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="mr-auto">
+                    <Nav className="mr-auto" onClick={getNavItem}>
                         {
-                            allCategories.map(item =><Nav.Link href="#link">{item.toUpperCase()}</Nav.Link> )                      
+                            allCategories.map((item, index) =><Nav.Link key={index} href="#link">{item.toUpperCase()}</Nav.Link> )                      
                         }
                     </Nav>
                     <Form inline>

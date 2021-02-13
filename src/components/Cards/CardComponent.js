@@ -7,7 +7,6 @@ import { fetchFakeStoreItems } from '../../redux/fakeStoreItems'
 const CardComponent = () => {
     const [readMore, setReadMore] = useState(false)
 
-
     const dispatch = useDispatch()
     const { pending, error, data } = useSelector(state => state.fakeStoreItemsReducer)
 
