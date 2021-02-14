@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { Container, Row, Spinner } from 'react-bootstrap'
 import './CardComponent.css'
 
+import AddedToCard from '../AddToCard/AddedToCard'
+
 import CardItem from './CardItem'
 
 import { useDispatch, useSelector } from 'react-redux'
@@ -12,6 +14,8 @@ const CardComponent = () => {
 
     const dispatch = useDispatch()
     const { pending, error, data, filterBy } = useSelector(state => state.fakeStoreItemsReducer)
+    const { addToCard, cardId } = useSelector(state => state.cardItemReducer)
+
 
     useEffect(() => {
         dispatch(fetchFakeStoreItems())
@@ -27,7 +31,12 @@ const CardComponent = () => {
                 <h3>All Products </h3>
                 {
                     <Row>
-                        {data.map((item) => <CardItem key={item.id} item={item} readMore={readMore} setReadMore={setReadMore} />)}
+                        {addToCard === true ? <Container><AddedToCard /></Container> :
+                            data.map(
+                                (item) => <CardItem key={item.id} item={item} readMore={readMore} setReadMore={setReadMore} />
+                            )
+                        }
+
                     </Row>
                 }
             </Container>
@@ -37,10 +46,13 @@ const CardComponent = () => {
             <Container className='mt-5'>
                 <h3>MEN CLOTHING</h3>
                 {
-                    <Row>                        
-                        {data.map((item) =>
-                            item.category === 'men clothing'?<CardItem key={item.id} item={item} readMore={readMore} setReadMore={setReadMore} />: null       
-                        )} 
+                    <Row>
+                        {addToCard === true ? <Container><AddedToCard /></Container> :
+                            data.map(
+                                (item) => item.category === 'men clothing' ?
+                                    <CardItem key={item.id} item={item} readMore={readMore} setReadMore={setReadMore} />
+                                    : null
+                            )}
                     </Row>
                 }
             </Container>
@@ -50,11 +62,14 @@ const CardComponent = () => {
             <Container className='mt-5'>
                 <h3>JEWELLERY</h3>
                 {
-                    <Row>                        
-                    {data.map((item) =>
-                        item.category === 'jewelery'?<CardItem key={item.id} item={item} readMore={readMore} setReadMore={setReadMore} />: null       
-                    )} 
-                </Row>
+                    <Row>
+                        {addToCard === true ? <Container><AddedToCard /></Container> :
+                            data.map(
+                                (item) => item.category === 'jawelery' ?
+                                    <CardItem key={item.id} item={item} readMore={readMore} setReadMore={setReadMore} />
+                                    : null
+                            )}
+                    </Row>
                 }
             </Container>
         )
@@ -63,11 +78,14 @@ const CardComponent = () => {
             <Container className='mt-5'>
                 <h3>ELECTRONICS</h3>
                 {
-                    <Row>                        
-                    {data.map((item) =>
-                        item.category === 'electronics'?<CardItem key={item.id} item={item} readMore={readMore} setReadMore={setReadMore} />: null       
-                    )} 
-                </Row>
+                    <Row>
+                        {addToCard === true ? <Container><AddedToCard /></Container> :
+                            data.map(
+                                (item) => item.category === 'electronics' ?
+                                    <CardItem key={item.id} item={item} readMore={readMore} setReadMore={setReadMore} />
+                                    : null
+                            )}
+                    </Row>
                 }
             </Container>
         )
@@ -76,11 +94,14 @@ const CardComponent = () => {
             <Container className='mt-5'>
                 <h3>WOMEN CLOTHING</h3>
                 {
-                    <Row>                        
-                    {data.map((item) =>
-                        item.category === 'women clothing'?<CardItem key={item.id} item={item} readMore={readMore} setReadMore={setReadMore} />: null       
-                    )} 
-                </Row>
+                    <Row>
+                        {addToCard === true ? <Container><AddedToCard /></Container> :
+                            data.map(
+                                (item) => item.category === 'women clothing' ?
+                                    <CardItem key={item.id} item={item} readMore={readMore} setReadMore={setReadMore} />
+                                    : null
+                            )}
+                    </Row>
                 }
             </Container>
         )

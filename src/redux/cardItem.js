@@ -8,17 +8,17 @@ const initialState = [
 const cardClickedAndId = (isClicked, cardId) => {
     return {
         type: 'GET_ISCLICKED_CARDID',
-        action: { isClicked, cardId }
+        payload: { isClicked, cardId }
     }
 }
 
 const cardItemReducer = (state = initialState, action) => {
-    switch (action.payload) {
+    switch (action.type) {
         case 'GET_ISCLICKED_CARDID':
+            const { isClicked, cardId } = action.payload
             return {
-                ...state,
-                addToCard: action.payload.isClicked,
-                cardId: action.payload.cardId
+                addToCard: isClicked,
+                cardId: cardId
             }
         default: {
             return state

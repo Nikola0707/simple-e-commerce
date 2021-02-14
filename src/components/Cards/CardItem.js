@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Card } from 'react-bootstrap'
 
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { cardClickedAndId } from '../../redux/cardItem.js'
 
 const CardItem = ({ item, readMore, setReadMore }) => {
@@ -9,9 +9,11 @@ const CardItem = ({ item, readMore, setReadMore }) => {
     const [itemId, setItemId] = useState('')
 
     const dispatch = useDispatch()
+
     const dispatchAction = () => {
+        setClicked(!clicked)
+        setItemId(item.id)
         dispatch(cardClickedAndId(clicked, itemId))
-        console.log(clicked)
     }
 
     return (
@@ -31,10 +33,7 @@ const CardItem = ({ item, readMore, setReadMore }) => {
                         }
                     </button>
                 </Card.Text>
-                <button className='btn-add-to-card' onClick={() => {
-                    setClicked(!clicked)
-                    setItemId(item.id)
-                }}>ADD TO CARD</button>
+                <button className='btn-add-to-card' onClick={dispatchAction}>ADD TO CARD</button>
             </Card.Body>
         </Card>
     )
