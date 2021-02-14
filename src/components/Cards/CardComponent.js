@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Card, Container, Row, Spinner } from 'react-bootstrap'
+import { Container, Row, Spinner } from 'react-bootstrap'
 import './CardComponent.css'
 
 import CardItem from './CardItem'
@@ -27,7 +27,7 @@ const CardComponent = () => {
                 <h3>All Products </h3>
                 {
                     <Row>
-                        {data.map((item) => <CardItem item={item} readMore={readMore} setReadMore={setReadMore} />)}
+                        {data.map((item) => <CardItem key={item.id} item={item} readMore={readMore} setReadMore={setReadMore} />)}
                     </Row>
                 }
             </Container>
@@ -39,7 +39,7 @@ const CardComponent = () => {
                 {
                     <Row>                        
                         {data.map((item) =>
-                            item.category === 'men clothing'?<CardItem item={item} readMore={readMore} setReadMore={setReadMore} />: null       
+                            item.category === 'men clothing'?<CardItem key={item.id} item={item} readMore={readMore} setReadMore={setReadMore} />: null       
                         )} 
                     </Row>
                 }
@@ -52,7 +52,7 @@ const CardComponent = () => {
                 {
                     <Row>                        
                     {data.map((item) =>
-                        item.category === 'jewelery'?<CardItem item={item} readMore={readMore} setReadMore={setReadMore} />: null       
+                        item.category === 'jewelery'?<CardItem key={item.id} item={item} readMore={readMore} setReadMore={setReadMore} />: null       
                     )} 
                 </Row>
                 }
@@ -65,7 +65,7 @@ const CardComponent = () => {
                 {
                     <Row>                        
                     {data.map((item) =>
-                        item.category === 'electronics'?<CardItem item={item} readMore={readMore} setReadMore={setReadMore} />: null       
+                        item.category === 'electronics'?<CardItem key={item.id} item={item} readMore={readMore} setReadMore={setReadMore} />: null       
                     )} 
                 </Row>
                 }
@@ -78,7 +78,7 @@ const CardComponent = () => {
                 {
                     <Row>                        
                     {data.map((item) =>
-                        item.category === 'women clothing'?<CardItem item={item} readMore={readMore} setReadMore={setReadMore} />: null       
+                        item.category === 'women clothing'?<CardItem key={item.id} item={item} readMore={readMore} setReadMore={setReadMore} />: null       
                     )} 
                 </Row>
                 }

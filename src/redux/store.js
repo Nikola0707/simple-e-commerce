@@ -3,9 +3,12 @@ import logger from 'redux-logger'
 import thunk from 'redux-thunk'
 
 import { fakeStoreItemsReducer } from './fakeStoreItems'
+import { cardItemReducer } from './cardItem'
+
 
 const allReducers = combineReducers({
-    fakeStoreItemsReducer
+    fakeStoreItemsReducer,
+    cardItemReducer
 })
 
 const store = createStore(allReducers, applyMiddleware(thunk, logger))
