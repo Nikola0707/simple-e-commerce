@@ -4,9 +4,10 @@ import { Card } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { cardClickedAndId } from '../../redux/cardItem.js'
 
-const CardItem = ({ item, readMore, setReadMore }) => {
+const CardItem = ({ item }) => {
     const [clicked, setClicked] = useState(false)
     const [itemId, setItemId] = useState('')
+    const [readMore, setReadMore] = useState(false)
 
     const dispatch = useDispatch()
 
