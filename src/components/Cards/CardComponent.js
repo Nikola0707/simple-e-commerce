@@ -13,7 +13,7 @@ const CardComponent = () => {
 
     const dispatch = useDispatch()
     const { pending, error, data, filterBy } = useSelector(state => state.fakeStoreItemsReducer)
-    const { addToCard, cardId } = useSelector(state => state.cardItemReducer)
+    const { addToCard } = useSelector(state => state.cardItemReducer)
 
 
     useEffect(() => {
@@ -63,7 +63,7 @@ const CardComponent = () => {
                     <Row>
                         {addToCard === true ? <Container><AddedToCard /></Container> :
                             data.map(
-                                (item) => item.category === 'jawelery' ?
+                                (item) => item.category === 'jewelery' ?
                                     <CardItem key={item.id} item={item}  />
                                     : null
                             )}

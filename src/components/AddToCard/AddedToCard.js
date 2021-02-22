@@ -1,11 +1,14 @@
 import React from 'react'
 import './AddedToCardStyle.css'
 import { Button, Col, Modal, Row } from 'react-bootstrap'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { cardClickedAndId } from '../../redux/cardItem.js'
 
 
 const AddedtoCard = () => {
     const {image, price} = useSelector(state => state.cardItemReducer)
+    const dispatch = useDispatch()
+    
     return (
         <Modal.Dialog>
             <Modal.Header>
@@ -25,7 +28,9 @@ const AddedtoCard = () => {
             </Modal.Body>
 
             <Modal.Footer>
-                <Button variant="secondary">CONTINUE SHOPPING</Button>
+                <Button variant="secondary" onClick={()=>{
+                    dispatch(cardClickedAndId(false, '', '', ''))
+                }}>CONTINUE SHOPPING</Button>
                 <Button variant="primary">CHECKOUT</Button>
             </Modal.Footer>
         </Modal.Dialog>
