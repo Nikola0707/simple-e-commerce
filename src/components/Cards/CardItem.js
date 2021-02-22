@@ -5,17 +5,8 @@ import { useDispatch } from 'react-redux'
 import { cardClickedAndId } from '../../redux/cardItem.js'
 
 const CardItem = ({ item }) => {
-    const [clicked, setClicked] = useState(false)
-    const [itemId, setItemId] = useState('')
     const [readMore, setReadMore] = useState(false)
-
     const dispatch = useDispatch()
-
-    const dispatchAction = () => {
-        setClicked(!clicked)
-        setItemId(item.id)
-        dispatch(cardClickedAndId(clicked, itemId))
-    }
 
     return (
         <Card key={item.id} style={{ width: '25%' }} >
@@ -34,7 +25,9 @@ const CardItem = ({ item }) => {
                         }
                     </button>
                 </Card.Text>
-                <button className='btn-add-to-card' onClick={dispatchAction}>ADD TO CARD</button>
+                <button className='btn-add-to-card' onClick={() => {
+                    dispatch(cardClickedAndId(true, item.id, item.price, item.image))
+                }}>ADD TO CARD</button>
             </Card.Body>
         </Card>
     )

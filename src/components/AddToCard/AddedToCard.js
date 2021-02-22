@@ -1,8 +1,11 @@
 import React from 'react'
 import './AddedToCardStyle.css'
 import { Button, Col, Modal, Row } from 'react-bootstrap'
+import { useSelector } from 'react-redux'
+
 
 const AddedtoCard = () => {
+    const {image, price} = useSelector(state => state.cardItemReducer)
     return (
         <Modal.Dialog>
             <Modal.Header>
@@ -11,11 +14,11 @@ const AddedtoCard = () => {
             <Modal.Body>
                 <Row>
                     <Col md={5} className='text-center'>
-                        <img className='added-to-card-img' src='https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg' alt="test"/>
+                        <img className='added-to-card-img' src={image} alt="test"/>
                     </Col>
                     <Col md={7}>
                         <p className='quantity'>Quantity: 1</p>
-                        <p className='item-price'>Price: $5.99</p>
+                        <p className='item-price'>Price: ${price}</p>
                         <p className='total-price'>Total: $5.99</p>
                     </Col>
                 </Row>
